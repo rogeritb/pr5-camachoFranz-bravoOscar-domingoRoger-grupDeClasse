@@ -1,36 +1,41 @@
-def get_input(prompt):
-    return input(prompt).strip()
+def tradueix_catala(insult):
+    # Funció que tradueix l'insult en català a castellà
+    traductors = {
+        "Mocós": "Mocoso",
+        "Capsigrany": "Cabezón",
+        # Afegir aquí la resta d'insults en català
+    }
+    return traductors.get(insult, "No trobat")
 
-def translate_to_castellano(insult):
-    # Translate insult to Castellano using the Softcatala Translator API
-    # Documentation: https://www.softcatala.org/traductor/API/traduccio
+def tradueix_angles(insult):
+    # Funció que tradueix l'insult en català a anglès
+    # Implementar aquí la traducció utilitzant l'API de traducció DeepL
     pass
 
-def translate_to_english(insult):
-    # Translate insult to English using the DeepL Translator API
-    # Documentation: https://www.deepl.com/docs-api/translating-text/
+def tradueix_klingon(insult):
+    # Funció que tradueix l'insult en català a klingon
+    # Implementar aquí la traducció utilitzant l'API de traducció Tradukka
     pass
 
-def translate_to_klingon(insult):
-    # Translate insult to Klingon using the Tradukka Translator API
-    # Documentation: https://tradukka.com/docs/index.html#translation
-    pass
+insults = {
+    "CAT": ["Mocós", "Capsigrany"],
+    # Afegir aquí la resta d'insults en català
+}
 
-def translate_insult(insult):
-    castellano = translate_to_castellano(insult)
-    ingles = translate_to_english(insult)
-    klingon = translate_to_klingon(insult)
-    return castellano, ingles, klingon
+traduccions = {
+    "ESP": [],
+    "ENG": [],
+    "KLI": [],
+}
 
-def main():
-    print("Programa de traducció d'insults en català a castellà, anglès i klingon.")
-    print("Per favor, escriu per teclat un insult en català:")
-    insult = get_input("")
-    castellano, ingles, klingon = translate_insult(insult)
-    print("\nInsult en català:", insult)
-    print("Insult en castellà:", castellano)
-    print("Insult en inglés:", ingles)
-    print("Insult en klingon:", klingon)
+# Obtenir l'insult en català de l'usuari
+insult_catala = input("Escriu un insult en català: ")
 
-if __name__ == "__main__":
-    main()
+# Traducir l'insult a castellà, anglès i klingon
+for lang, trad in zip(["ESP", "ENG", "KLI"], [tradueix_catala, tradueix_angles, tradueix_klingon]):
+    traduccion = trad(insult_catala)
+    traduccions[lang].append(traduccion)
+
+# Mostrar les traduccions a l'usuari
+for lang, traduccions_lang in traduccions.items():
+    print(f"Traduccions a {lang}: {traduccions_lang}")
